@@ -1,12 +1,19 @@
-"use client";
-
 import { Card } from "@/components/ui/card";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Categories from "./components/categories";
+import ProductList from "./components/produtc-list";
+import { prismaClient } from "@/lib/prisma";
 
-export default function Home() {
-  const { data } = useSession();
+export default async function Home() {
+  const deals = await prismaClient.product.findMany({
+    where:{
+      discountPercent: {
+        gt: 0,
+      }
+    }
+  })
+
   return (
     <div>
       <Image
@@ -20,6 +27,10 @@ export default function Home() {
 
       <div className="mt-8">
         <Categories />
+      </div>
+
+      <div className="mt-8">
+        <ProductList products={deals}/>
       </div>
     </div>
   );
