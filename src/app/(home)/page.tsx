@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Categories from "./components/categories";
-import ProductList from "./components/produtc-list";
+import ProductList from "../../components/ui/produtc-list";
 import { prismaClient } from "@/lib/prisma";
 
 export default async function Home() {
@@ -29,8 +29,6 @@ export default async function Home() {
       },
     },
   });
-
-
 
   return (
     <div className="py-8">
