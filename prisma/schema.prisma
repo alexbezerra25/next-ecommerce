@@ -67,6 +67,7 @@ model Category{
   products Product[]
 }
 
+
 model Product {
   id String @id @default(uuid())
   name String
