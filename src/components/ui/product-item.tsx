@@ -2,6 +2,7 @@ import { ProductWithTotalPrice } from "@/helpers/product";
 import Image from "next/image";
 import { Badge } from "./badge";
 import { ArrowDown,  StarIcon } from "lucide-react";
+import Link from "next/link";
 
 interface ProductItemProps {
   product: ProductWithTotalPrice;
@@ -9,6 +10,7 @@ interface ProductItemProps {
 
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
+<Link href={`product/${product.slug}`}>
     <div className="flex w-full flex-col gap-3">
       {/* Imagem do produto */}
       <div className="relative flex h-[170px] w-full items-center justify-center rounded-lg bg-accent">
@@ -70,6 +72,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
         </div>
       </div>
     </div>
+    </Link>
   );
 };
 
