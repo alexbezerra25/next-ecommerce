@@ -36,6 +36,7 @@ const ProductDetails = async ({params: {slug}} :ProductDetailsProps) => {
             <ProductImages imageUrls={product.imageUrls} name={product.name}/>
             <ProductInfo product={computedProductTotalPrice(product)}/>
 
+            <p className="uppercase font-semibold px-5 mt-8">PRODUTOS RECOMENDADOS</p>
             <ProductList products={product.category.products}/>
         </div>
 
