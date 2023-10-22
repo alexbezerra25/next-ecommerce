@@ -10,26 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Category{
-  id String @id @default(uuid())
-  name String
-  slug String
-  imageUrl String
-  products Product[]
-}
-
-model Product {
-  id String @id @default(uuid())
-  name String
-  slug String
-  description String
-  basePrice Decimal @db.Decimal(8,2)
-  imageURLs String[]
-  categoryId String
-  category Category @relation(fields: [categoryId], references: [id])
-  discountPercent Decimal @db.Decimal(6,4) @default(0)
-}
-
 
 // Autenticação:
 model Account {
@@ -75,4 +55,26 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+
+// E-commerce
+model Category{
+  id String @id @default(uuid())
+  name String
+  slug String
+  imageUrl String
+  products Product[]
+}
+
+model Product {
+  id String @id @default(uuid())
+  name String
+  slug String
+  description String
+  basePrice Decimal @db.Decimal(8,2)
+  imageUrls String[]
+  categoryId String
+  category Category @relation(fields: [categoryId], references: [id])
+  discountPercent Decimal @db.Decimal(6,4) @default(0)
 }
