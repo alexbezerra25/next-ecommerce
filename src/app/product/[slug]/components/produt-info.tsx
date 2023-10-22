@@ -89,6 +89,7 @@ const ProductInfo = ({
             <p className="font-semibold">Frete grátis</p>
         </div>
       </div>
+      
     </div>
   );
 };
