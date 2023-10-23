@@ -10,7 +10,7 @@ interface ProductItemProps {
 
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
-<Link href={`product/${product.slug}`}>
+<Link href={`/product/${product.slug}`}>
     <div className="flex w-full flex-col gap-3">
       {/* Imagem do produto */}
       <div className="relative flex h-[170px] w-full items-center justify-center rounded-lg bg-accent">
@@ -46,16 +46,16 @@ const ProductItem = ({ product }: ProductItemProps) => {
           {Number(product.discountPercent) > 0 ? (
             <>
               <p className="text-sm font-semibold">
-                R${product.totalPrice.toFixed(2)}
+                R$ {product.totalPrice.toFixed(2)}
               </p>
 
               <p className="text-xs line-through opacity-75">
-                R${product.basePrice.toFixed(2)}
+                R$ {product.basePrice.toFixed(2)}
               </p>
             </>
           ) : (
             <p className="text-sm font-semibold">
-              R${product.basePrice.toFixed(2)}
+              R$ {product.basePrice.toFixed(2)}
             </p>
           )}
         </div>
