@@ -13,9 +13,10 @@ import { useContext } from "react";
 import { CartContext } from "@/providers/cart";
 import CartItem from "./cart-item";
 import { computedProductTotalPrice } from "@/helpers/product";
+import { Separator } from "./separator";
 
 const Cart = () => {
-  const { products } = useContext(CartContext);
+  const { products, subTotal, total, totalDiscount } = useContext(CartContext);
 
   return (
     <Sheet>
@@ -42,6 +43,32 @@ const Cart = () => {
                 product={computedProductTotalPrice(product as any) as any}
               />
             ))}
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <Separator />
+            <div className="flex items-center justify-between">
+                <p>Subtotal</p>
+                <p>R$ {subTotal.toFixed(2)}</p>
+            </div>
+
+            <Separator />
+            <div className="flex items-center justify-between">
+                <p>Entrega</p>
+                <p>GRÁTIS</p>
+            </div>
+
+            <Separator />
+            <div className="flex items-center justify-between">
+                <p>Descontos</p>
+                <p>R$ {totalDiscount.toFixed(2)}</p>
+            </div>
+
+            <Separator />
+            <div className="flex items-center justify-between">
+                <p>Total</p>
+                <p>R$ {total.toFixed(2)}</p>
+            </div>
           </div>
         </div>
       </SheetContent>

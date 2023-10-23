@@ -1,6 +1,6 @@
 "use client";
 import { ProductWithTotalPrice } from "@/helpers/product";
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useMemo, useState } from "react";
 
 export interface CartProduct extends ProductWithTotalPrice {
   quantity: number;
@@ -8,6 +8,9 @@ export interface CartProduct extends ProductWithTotalPrice {
 
 interface ICartContext {
   products: CartProduct[];
+  subTotal: number,
+  total: number,
+  totalDiscount: number,
   cartTotalPrice: number;
   cartBasePrice: number;
   cartTotalDiscount: number;
@@ -19,6 +22,9 @@ interface ICartContext {
 
 export const CartContext = createContext<ICartContext>({
   products: [],
+  subTotal: 0,
+  total: 0,
+  totalDiscount: 0,
   cartTotalPrice: 0,
   cartBasePrice: 0,
   cartTotalDiscount: 0,
@@ -30,6 +36,20 @@ export const CartContext = createContext<ICartContext>({
 
 const CartProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = useState<CartProduct[]>([]);
+
+  const subTotal = useMemo(() => {
+    return products.reduce((acc, product) => {
+      return acc + Number(product.basePrice) * product.quantity;
+    }, 0);
+  }, [products]);
+
+  const total = useMemo(() => {
+    return products.reduce((acc, product) => {
+      return acc + Number(product.totalPrice) * product.quantity;
+    }, 0);
+  }, [products]);
+
+  const totalDiscount = total - subTotal;
 
   const addProductToCart = (product: CartProduct) => {
     // se o produto já existir no carrinho, então incrementar a quantidade
@@ -85,14 +105,19 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
-  const removeProductFromCart = (productId: string)=>{
-        setProducts(prev=> prev.filter(cartProduct=>cartProduct.id !== productId))
-  }
+  const removeProductFromCart = (productId: string) => {
+    setProducts((prev) =>
+      prev.filter((cartProduct) => cartProduct.id !== productId),
+    );
+  };
 
   return (
     <CartContext.Provider
       value={{
         products,
+        subTotal,
+        total,
+        totalDiscount,
         cartTotalPrice: 0,
         cartBasePrice: 0,
         cartTotalDiscount: 0,
