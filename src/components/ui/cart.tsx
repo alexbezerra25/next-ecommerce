@@ -51,6 +51,7 @@ const Cart = () => {
           </Badge>
 
           {/* RENDERIZAR OS PRODUTOS */}
+          {products.length > 0 ? (
           <div className="flex h-full max-h-full flex-col gap-5 overflow-hidden">
             <ScrollArea className="h-full">
               <div className="flex h-full flex-col gap-3">
@@ -61,9 +62,12 @@ const Cart = () => {
                 ))}
               </div>
             </ScrollArea>
-          </div>
+          </div>) : (
+            <p>Carrinho vazio...</p>
+          )}
 
-          <div className="flex flex-col gap-3">
+          {products.length > 0 && (
+            <div className="flex flex-col gap-3">
             <Separator />
             <div className="flex items-center justify-between">
               <p>Subtotal</p>
@@ -92,6 +96,7 @@ const Cart = () => {
                 FINALIZAR COMPRA
             </Button>
           </div>
+          )}
 
 
         </div>
