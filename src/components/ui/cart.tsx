@@ -57,6 +57,7 @@ const Cart = () => {
               <div className="flex h-full flex-col gap-3">
                 {products.map((product) => (
                   <CartItem
+                    key={product.id}
                     product={computedProductTotalPrice(product as any) as any}
                   />
                 ))}
