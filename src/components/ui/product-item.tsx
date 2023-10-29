@@ -14,6 +14,7 @@ interface ProductItemProps {
 const ProductItem = ({ product, className }: ProductItemProps) => {
   const currentRating = Math.floor(Math.random() * 6)
   const numberRatings = Math.floor(Math.random() * 6000)
+
   return (
 <Link 
 href={`/product/${product.slug}`}
@@ -67,7 +68,7 @@ className={cn("flex min-w-[156px] flex-col gap-4", className)}
         </div>
 
         {/* Avaliações do produto */}
-        <ProductRating props={{productId: product.id, currentRating, numberRatings}} />
+        <ProductRating currentRating={currentRating} numberRatings={numberRatings} />
         
       </div>
     </div>

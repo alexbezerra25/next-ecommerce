@@ -21,6 +21,7 @@ async function OrderPage() {
 
   const orders = await prismaClient.order.findMany({
     where: {
+      // @ts-ignore
       userId: session.user.id,
     },
     include: {
