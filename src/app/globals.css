@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
 
 @layer base {
   :root {
@@ -77,5 +78,31 @@
   }
   html {
     @apply h-full;
+  }
+}
+
+@layer utilities {
+  @layer responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .scroll-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .scroll-hide {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+
+    /* Default scrollbar for Chrome, Safari and Opera */
+    .scroll-default::-webkit-scrollbar {
+      display: block;
+    }
+
+    /* Default scrollbar for IE, Edge and Firefox */
+    .scroll-default {
+      -ms-overflow-style: auto; /* IE and Edge */
+      scrollbar-width: auto; /* Firefox */
+    }
   }
 }
