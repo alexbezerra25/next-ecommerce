@@ -92,9 +92,11 @@ const Sidebar = () => {
             </SheetClose>
 
             <SheetClose asChild>
+            <Link href="/deals">
               <Button variant="outline" className="w-full justify-start gap-2">
                 <PercentIcon size={16} /> Ofertas
               </Button>
+              </Link>
             </SheetClose>
 
             <SheetClose asChild>
