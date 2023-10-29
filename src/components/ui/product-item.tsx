@@ -4,13 +4,16 @@ import { Badge } from "./badge";
 import { ArrowDown,  StarIcon } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import ProductRating from "./product-rating";
+
 
 interface ProductItemProps {
   product: ProductWithTotalPrice;
   className?: string
 }
-
 const ProductItem = ({ product, className }: ProductItemProps) => {
+  const currentRating = Math.floor(Math.random() * 6)
+  const numberRatings = Math.floor(Math.random() * 6000)
   return (
 <Link 
 href={`/product/${product.slug}`}
@@ -64,15 +67,8 @@ className={cn("flex min-w-[156px] flex-col gap-4", className)}
         </div>
 
         {/* Avaliações do produto */}
-        <div className="flex gap-1 items-center">
-          <StarIcon size={14} className="text-primary"/>
-          <StarIcon size={14} className="text-primary"/>
-          <StarIcon size={14} className="text-primary"/>
-          <StarIcon size={14} className="text-primary"/>
-          <StarIcon size={14} className="text-primary"/>
-
-          <p className="text-xs opacity-50">(42)</p>
-        </div>
+        <ProductRating currentRating={currentRating} numberRatings={numberRatings}/>
+        
       </div>
     </div>
     </Link>
