@@ -9,7 +9,7 @@ import { Card } from "./card";
 
 const Header = () => {
   return (
-    <div className="flex w-full items-center border-b border-solid border-e-white justify-between lg:px-12">
+    <div className="flex w-full items-center border-b border-solid justify-between bg-card lg:px-12">
       <Card  className="flex w-full border-none items-center justify-between p-5 lg:px-12 lg:container">
       <Sidebar />
 

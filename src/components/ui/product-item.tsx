@@ -67,7 +67,7 @@ className={cn("flex min-w-[156px] flex-col gap-4", className)}
         </div>
 
         {/* Avaliações do produto */}
-        <ProductRating currentRating={currentRating} numberRatings={numberRatings}/>
+        <ProductRating props={{productId: product.id, currentRating, numberRatings}} />
         
       </div>
     </div>

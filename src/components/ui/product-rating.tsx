@@ -2,12 +2,12 @@
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
-const ProductRating = ({currentRating, numberRatings}: any) => {
+const ProductRating = ({currentRating, numberRatings, productId}: any) => {
     return ( 
-        <div className="flex gap-1 items-center">
+        <div key={productId} className="flex gap-1 items-center">
             {[...Array(5)].map((item, index)=>(
               <label>
-              <FontAwesomeIcon icon={faStar} size="sm" className={index <= currentRating ? 'text-yellow-400' : 'text-gray-500'}/>
+              <FontAwesomeIcon icon={faStar} size="sm" className={index <= currentRating ? 'text-yellow-400' : 'text-accent'}/>
 
               </label>
             ))}
