@@ -7,7 +7,7 @@ const Catalog = async () => {
   const categories = await prismaClient.category.findMany({});
 
   return (
-    <div className="p-5 flex flex-col gap-8">
+    <div className="p-5 flex flex-col gap-8 lg:container">
       <Badge
         variant="outline"
         className="w-fit gap-1 border-primary py-[0.375rem] text-base uppercase"
@@ -16,7 +16,7 @@ const Catalog = async () => {
         Catálogo
       </Badge>
 
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid grid-cols-2 gap-8 lg:grid-cols-3">
         {categories.map((category) => (
           <CategoryItem key={category.id} category={category} />
         ))}

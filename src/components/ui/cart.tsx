@@ -22,7 +22,7 @@ import { useSession } from "next-auth/react";
 
 const Cart = () => {
   const { data } = useSession()
-  const { products, subTotal, total, totalDiscount } = useContext(CartContext);
+  const { products, subTotal, total, totalDiscount, productsQuantity } = useContext(CartContext);
 
   const handleFinishPurchaseClick = async ()=>{
 
@@ -46,13 +46,16 @@ const Cart = () => {
 
   return (
     <Sheet>
-      <SheetTrigger asChild>
+      <SheetTrigger asChild className="relative">
         <Button size="icon" variant="outline">
           <ShoppingCartIcon />
+          {productsQuantity > 0 && (
+            <Badge variant="default" className="absolute top-[-0.6rem] right-[-1rem]">{productsQuantity}</Badge> 
+          )}
         </Button>
       </SheetTrigger>
 
-      <SheetContent>
+      <SheetContent className=" w-[24rem]">
         <div className="flex h-full flex-col gap-8">
           <Badge
             variant="outline"

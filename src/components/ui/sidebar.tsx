@@ -33,13 +33,13 @@ const Sidebar = () => {
   const { status, data } = useSession();
   return (
     <Sheet>
-      <SheetTrigger asChild>
+      <SheetTrigger asChild className="lg:hidden">
         <Button size="icon" variant="outline">
           <MenuIcon />
         </Button>
       </SheetTrigger>
 
-      <SheetContent side="left" className="h-full flex flex-col">
+      <SheetContent side="left" className="h-full flex flex-col w-[20rem]">
         <SheetHeader className="text-left text-lg font-semibold">
           Menu
         </SheetHeader>
