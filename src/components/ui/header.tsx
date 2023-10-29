@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <Card className="flex items-center justify-between p-[1.875rem]">
+    <Card className="flex items-center justify-between p-5">
       <Sidebar />
 
       <h1 className="text-lg font-semibold">

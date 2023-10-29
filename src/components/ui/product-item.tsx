@@ -3,14 +3,20 @@ import Image from "next/image";
 import { Badge } from "./badge";
 import { ArrowDown,  StarIcon } from "lucide-react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface ProductItemProps {
   product: ProductWithTotalPrice;
+  className?: string
 }
 
-const ProductItem = ({ product }: ProductItemProps) => {
+const ProductItem = ({ product, className }: ProductItemProps) => {
   return (
-<Link href={`/product/${product.slug}`}>
+<Link 
+href={`/product/${product.slug}`}
+className={cn("flex min-w-[156px] flex-col gap-4", className)}
+>
+
     <div className="flex w-full flex-col gap-3">
       {/* Imagem do produto */}
       <div className="relative flex h-[170px] w-full items-center justify-center rounded-lg bg-accent">
@@ -20,10 +26,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
           height={0}
           sizes="100vw"
           alt={product.name}
-          className="h-[90px] max-h-[70%] w-auto max-w-[80%]"
-          style={{
-            objectFit: "contain",
-          }}
+          className="h-auto max-h-[70%] w-auto max-w-[80%] object-contain"
         />
 
         {Number(product.discountPercent) > 0 && (
@@ -35,26 +38,26 @@ const ProductItem = ({ product }: ProductItemProps) => {
       </div>
 
       {/* Info do produto */}
-      <div className="">
+      <div className="flex flex-col gap-1">
       {/* Nome do produto */}
-        <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm">
+        <p className="truncate text-sm">
           {product.name}
         </p>
 
         {/* Valor do produto */}
-        <div className="flex gap-2 mt-1">
+        <div className="flex gap-2">
           {Number(product.discountPercent) > 0 ? (
             <>
-              <p className="text-sm font-semibold">
+              <p className="truncate text-sm font-semibold lg:text-lg">
                 R$ {product.totalPrice.toFixed(2)}
               </p>
 
-              <p className="text-xs line-through opacity-75">
+              <p className="truncate text-xs line-through opacity-75 lg:text-sm">
                 R$ {product.basePrice.toFixed(2)}
               </p>
             </>
           ) : (
-            <p className="text-sm font-semibold">
+            <p className="truncate text-sm font-semibold">
               R$ {product.basePrice.toFixed(2)}
             </p>
           )}
